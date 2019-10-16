@@ -1,8 +1,8 @@
-var assert = require('assert');
-var crypto = require('crypto');
+import assert from "assert.js";
+import crypto from "crypto.js";
 
-var uuid = require('../');
-var crypto = require('crypto');
+import uuid from "../.js";
+import crypto from "crypto.js";
 
 // Verify ordering of v1 ids created with explicit times
 var TIME = 1321644961388; // 2011-11-18 11:36:01.388-08:00
@@ -49,7 +49,7 @@ function compare(name, ids) {
 }
 
 test('nodeRNG', function() {
-  var rng = require('../lib/rng');
+  import rng from "../lib/rng.js";
   assert.equal(rng.name, 'nodeRNG');
 
   var bytes = rng();
@@ -61,7 +61,7 @@ test('nodeRNG', function() {
 });
 
 test('mathRNG', function() {
-  var rng = require('../lib/rng-browser');
+  import rng from "../lib/rng-browser.js";
   assert.equal(rng.name, 'mathRNG');
 
   var bytes = rng();
@@ -90,14 +90,14 @@ test('cryptoRNG', function() {
       return arr;
     }
   };
-  var rng = require('../lib/rng-browser');
+  import rng from "../lib/rng-browser.js";
   delete global.crypto;
 
   assert.equal(rng.name, 'whatwgRNG');
 });
 
 test('sha1 node', function() {
-  var sha1 = require('../lib/sha1');
+  import sha1 from "../lib/sha1.js";
 
   HASH_SAMPLES.forEach(function(sample) {
     // Convert the sha1 Buffer to an Array here so we can call map() on it in hashToHex
@@ -106,7 +106,7 @@ test('sha1 node', function() {
 });
 
 test('sha1 browser', function() {
-  var sha1 = require('../lib/sha1-browser');
+  import sha1 from "../lib/sha1-browser.js";
 
   HASH_SAMPLES.forEach(function(sample) {
     assert.equal(hashToHex(sha1(sample.input)), sample.sha1);
@@ -114,7 +114,7 @@ test('sha1 browser', function() {
 });
 
 test('md5 node', function() {
-  var md5 = require('../lib/md5');
+  import md5 from "../lib/md5.js";
 
   HASH_SAMPLES.forEach(function(sample) {
     // Convert the sha1 Buffer to an Array here so we can call map() on it in hashToHex
@@ -123,7 +123,7 @@ test('md5 node', function() {
 });
 
 test('md5 browser', function() {
-  var md5 = require('../lib/md5-browser');
+  import md5 from "../lib/md5-browser.js";
 
   HASH_SAMPLES.forEach(function(sample) {
     assert.equal(hashToHex(md5(sample.input)), sample.md5);
@@ -131,7 +131,7 @@ test('md5 browser', function() {
 });
 
 test('v3', function() {
-  var v3 = require('../v3');
+  import v3 from "../v3.js";
 
   // Expect to get the same results as http://tools.adjet.org/uuid-v3
   assert.equal(v3('hello.example.com', v3.DNS), '9125a8dc-52ee-365b-a5aa-81b0b3681cf6');
@@ -156,7 +156,7 @@ test('v3', function() {
 });
 
 test('v5', function() {
-  var v5 = require('../v5');
+  import v5 from "../v5.js";
 
   // Expect to get the same results as http://tools.adjet.org/uuid-v5
   assert.equal(v5('hello.example.com', v5.DNS), 'fdda765f-fc57-5604-a269-52a7df8164ec');

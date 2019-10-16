@@ -1,5 +1,5 @@
-var v1 = require('./v1');
-var v4 = require('./v4');
+import v1 from "./v1.js";
+import v4 from "./v4.js";
 
 var uuid = v4;
 uuid.v1 = v1;
